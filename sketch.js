@@ -97,7 +97,7 @@ function draw(){
      
       
     // backward velocity to background
-    ground.velocityX = -5;
+    ground.velocityX = -(4 + 3 * score/100);
     
       
     // logic to create illusion for the infinite loop
