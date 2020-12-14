@@ -51,7 +51,8 @@ function setup(){
   
   // creating mario
   mario = createSprite(50,240,30,50);
-  mario.addAnimation("Mario", marioImage); 
+  mario.addAnimation("marioRunning", marioImage); 
+  mario.addAnimation("marioCollided", marioCollided);
   mario.scale = 1.4;
   
   // to set the collision radius of Mario
@@ -81,7 +82,6 @@ function draw(){
   
   if(gameState === PLAY){
     
-    //mario.addAnimation("Mario", marioImage);
     gameOver.visible = false;
     restart.visible = false;
     
@@ -97,7 +97,7 @@ function draw(){
      
       
     // backward velocity to background
-    ground.velocityX = -(4 + 3 * score/100);
+    ground.velocityX = -(4 + 3* score/100);
     
       
     // logic to create illusion for the infinite loop
@@ -117,7 +117,7 @@ function draw(){
     
     // to check if mario touches obstacles
     if(mario.isTouching(obstaclesGroup)){
-       gameState = END;
+      gameState = END;
       dieSound.play();
     }
     
@@ -134,7 +134,7 @@ function draw(){
       mario.velocityY = 0;
       ground.velocityX =0;
     
-      mario.addAnimation("Mario",marioCollided);
+      mario.changeAnimation("marioCollided",marioCollided);
       gameOver.visible = true;
       restart.visible = true;  
     
@@ -217,7 +217,7 @@ function reset(){
   bricksGroup.destroyEach();
   
   // mario.changeAnimation("Mario", marioImage);
-  mario.addAnimation("Mario",marioImage);
+  mario.changeAnimation("marioRunning",marioImage);
   
   // reset the score
   score = 0;
